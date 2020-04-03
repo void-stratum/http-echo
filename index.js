@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 80;
+const port = 1321;
 const ctLengthHeader = "content-length";
 
 function readBodyAsString(req, callback) {
@@ -8,7 +8,7 @@ function readBodyAsString(req, callback) {
     
     let eof = +req.headers[ctLengthHeader];
 
-    if (eof === 0) {
+    if (eof === NaN || eof === 0) {
         callback("");
     }
     
