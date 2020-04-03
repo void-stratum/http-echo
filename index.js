@@ -20,18 +20,6 @@ function readBodyAsString(req, callback) {
     }); 
 }
 
-function formatHeaders(req) {
-    let headers = [];
-    
-    for (let i = 0; i < req.rawHeaders.length; i=i+2) {
-        const header = req.rawHeaders[i];
-        const value = req.rawHeaders[i + 1];
-        headers[headers.length] = `${header}: ${value}`;
-    }
-
-    return headers;
-}
-
 app.all("*", (req, res) => {    
 
     readBodyAsString(req, (body) => {
@@ -39,7 +27,7 @@ app.all("*", (req, res) => {
             {
                 method: req.method,
                 path: req.path,
-                headers: formatHeaders(req),
+                headers: req.headers,
                 body: body,
                 query: req.query
             }
