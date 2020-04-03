@@ -8,7 +8,7 @@ function readBodyAsString(req, callback) {
     
     let eof = +req.headers[ctLengthHeader];
 
-    if (eof === NaN || eof === 0) {
+    if (isNaN(eof) || eof === 0) {
         callback("");
     }
     
