@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const port = 80;
 const ctLengthHeader = "content-length";
-const CRLF = "<br />"
 
 function readBodyAsString(req, callback) {
     let body = "";
@@ -21,9 +20,17 @@ function readBodyAsString(req, callback) {
     }); 
 }
 
-app.all("*", (req, res) => {
+app.all("*", (req, res) => {    
+
     readBodyAsString(req, (body) => {
-        res.send(`${req.method}:${req.path}${CRLF}BODY:${body}`);      
+        res.json(
+            {
+                method: req.method,
+                path: req.path,
+                headers: req.rawHeaders,
+                body: body
+            }
+        );
     });    
 });
 
