@@ -6,7 +6,12 @@ const CRLF = "<br />"
 
 function readBodyAsString(req, callback) {
     let body = "";
+    
     let eof = +req.headers[ctLengthHeader];
+
+    if (eof === 0) {
+        callback("");
+    }
     
     req.on("data", (chunk) => {        
         body += chunk.toString();        
@@ -16,13 +21,9 @@ function readBodyAsString(req, callback) {
     }); 
 }
 
-app.get("*", (req, res) => {
-    res.send(`GET:${req.path}`);
-});
-
-app.post("*", (req, res) => {
+app.all("*", (req, res) => {
     readBodyAsString(req, (body) => {
-        res.send(`POST:${req.path}${CRLF}BODY:${body}`);      
+        res.send(`${req.method}:${req.path}${CRLF}BODY:${body}`);      
     });    
 });
 
