@@ -25,6 +25,7 @@ app.all("*", (req, res) => {
     readBodyAsString(req, (body) => {
         res.json(
             {
+                date: new Date().toJSON(),
                 method: req.method,
                 path: req.path,
                 headers: req.headers,
