@@ -4,8 +4,6 @@ const port = 1321;
 const ctLengthHeader = "content-length";
 const CRLF = "<br />"
 
-let body = "";
-
 function readBodyAsString(req, callback) {
     let body = "";
     let eof = +req.headers[ctLengthHeader];
