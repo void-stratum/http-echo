@@ -1,12 +1,23 @@
+'use strict';
+
+// Imports
 const express = require("express");
 const app = express();
-const port = 80;
-const ctLengthHeader = "content-length";
 
+// Contants
+const PORT = 80;
+const HOST = '0.0.0.0';
+const CNTLEN_HEADER = "content-length";
+
+/**
+ * Parses body and returns a string
+ * @param {*} req Express request
+ * @param {*} callback Callback that takes body string argument
+ */
 function readBodyAsString(req, callback) {
     let body = "";
     
-    let eof = +req.headers[ctLengthHeader];
+    let eof = +req.headers[CNTLEN_HEADER];
 
     if (isNaN(eof)) {
         callback(null);
@@ -24,6 +35,7 @@ function readBodyAsString(req, callback) {
     }); 
 }
 
+/** Defining requests handling */
 app.all("*", (req, res) => {    
 
     readBodyAsString(req, (body) => {
@@ -41,7 +53,14 @@ app.all("*", (req, res) => {
 });
 
 
-app.listen(port, () => {
-    console.log(`Server is  now listening on port ${port}`);
-});
+// Starts Express http listener
+app.listen(
+    PORT, 
+    HOST, () => 
+    {
+        console.log(
+            `QuickHttpResponder is now running on http://${HOST}:${PORT}`
+        );
+    }
+);
 
