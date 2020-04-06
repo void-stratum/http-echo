@@ -61,7 +61,7 @@ app.listen(
     () =>
         {
             console.log(
-                `QuickHttpResponder is now running on http://${HOST}:${PORT}`
+                `Http-echo is now running on http://${HOST}:${PORT}`
             );
         }
 );
