@@ -5,8 +5,8 @@ const express = require("express");
 const app = express();
 
 // Constants
-const PORT = 80;
-const HOST = "0.0.0.0";
+const PORT = process.env.HTTP_ECHO_PORT || 80;
+const HOST = process.env.HTTP_ECHO_HOST || "0.0.0.0";
 const CNTLEN_HEADER = "content-length";
 
 /**
