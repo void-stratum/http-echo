@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Void-Stratum",
-  "license": "GPL3",
+  "license": "GPLv3",
   "private": true,
   "dependencies": {
     "express": "^4.17.1"
