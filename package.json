@@ -1,7 +1,7 @@
 {
   "name": "http-echo",
   "version": "1.0.0",
-  "description": "",
+  "description": "A basic nodejs express project for http testing/debugging",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
